@@ -1,20 +1,78 @@
 name: Sankofa hosted smoke
+
 on:
   workflow_call:
     inputs:
-      base-url: { type: string, required: true }
+      base-url:
+        type: string
+        required: true
+      json-health-path:
+        description: Optional endpoint that must return JSON with ok set to true
+        type: string
+        required: false
+        default: ''
+      allowed-host-suffix:
+        description: Required host suffix when using a protection bypass secret
+        type: string
+        required: false
+        default: ''
+    secrets:
+      protection-bypass:
+        required: false
+
+permissions: {}
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
-    permissions: { contents: read }
+    timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: '20', cache: npm }
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run build
-      - name: Verify preview is reachable
-        run: node -e "fetch(process.env.BASE_URL).then(r=>{if(!r.ok) process.exit(1)})"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Verify hosted routes
         env:
           BASE_URL: ${{ inputs.base-url }}
+          JSON_HEALTH_PATH: ${{ inputs.json-health-path }}
+          ALLOWED_HOST_SUFFIX: ${{ inputs.allowed-host-suffix }}
+          PROTECTION_BYPASS: ${{ secrets.protection-bypass }}
+        run: |
+          node --input-type=module <<'JS'
+          const base = new URL(process.env.BASE_URL);
+          const suffix = process.env.ALLOWED_HOST_SUFFIX;
+          const bypass = process.env.PROTECTION_BYPASS;
+          if (base.protocol !== 'https:' || base.username || base.password || base.port) {
+            throw new Error('Expected an HTTPS deployment URL without credentials or a custom port.');
+          }
+          if ((suffix && !base.hostname.endsWith(suffix)) || (bypass && !suffix)) {
+            throw new Error('Deployment hostname is outside the allowed suffix.');
+          }
+
+          const headers = bypass ? { 'x-vercel-protection-bypass': bypass } : {};
+          async function check(path, isHealthCheck = false) {
+            const url = new URL(path, base);
+            if (url.origin !== base.origin) throw new Error('Health path must stay on the deployment origin.');
+            for (let attempt = 0; attempt < 3; attempt++) {
+              const response = await fetch(url, {
+                headers, redirect: 'error', signal: AbortSignal.timeout(12000)
+              });
+              if (response.ok) {
+                if (isHealthCheck && (await response.json())?.ok !== true) {
+                  throw new Error(path + ' must return JSON with ok set to true.');
+                }
+                if (!isHealthCheck) await response.body?.cancel();
+                console.log(path + ' returned HTTP ' + response.status);
+                return;
+              }
+              await response.body?.cancel();
+              if (response.status < 500 || attempt === 2) {
+                throw new Error(path + ' returned HTTP ' + response.status);
+              }
+              await new Promise(resolve => setTimeout(resolve, 1500));
+            }
+          }
+
+          const health = process.env.JSON_HEALTH_PATH;
+          await Promise.all([check('/'), ...(health ? [check(health, true)] : [])]);
+          JS
