@@ -12,13 +12,10 @@ on:
         required: false
         default: ''
       allowed-host-suffix:
-        description: Required host suffix when using a protection bypass secret
+        description: Optional suffix to constrain deployment hostnames
         type: string
         required: false
         default: ''
-    secrets:
-      protection-bypass:
-        required: false
 
 permissions: {}
 
@@ -36,26 +33,23 @@ jobs:
           BASE_URL: ${{ inputs.base-url }}
           JSON_HEALTH_PATH: ${{ inputs.json-health-path }}
           ALLOWED_HOST_SUFFIX: ${{ inputs.allowed-host-suffix }}
-          PROTECTION_BYPASS: ${{ secrets.protection-bypass }}
         run: |
           node --input-type=module <<'JS'
           const base = new URL(process.env.BASE_URL);
           const suffix = process.env.ALLOWED_HOST_SUFFIX;
-          const bypass = process.env.PROTECTION_BYPASS;
           if (base.protocol !== 'https:' || base.username || base.password || base.port) {
             throw new Error('Expected an HTTPS deployment URL without credentials or a custom port.');
           }
-          if ((suffix && !base.hostname.endsWith(suffix)) || (bypass && !suffix)) {
+          if (suffix && !base.hostname.endsWith(suffix)) {
             throw new Error('Deployment hostname is outside the allowed suffix.');
           }
 
-          const headers = bypass ? { 'x-vercel-protection-bypass': bypass } : {};
           async function check(path, isHealthCheck = false) {
             const url = new URL(path, base);
             if (url.origin !== base.origin) throw new Error('Health path must stay on the deployment origin.');
             for (let attempt = 0; attempt < 3; attempt++) {
               const response = await fetch(url, {
-                headers, redirect: 'error', signal: AbortSignal.timeout(12000)
+                redirect: 'error', signal: AbortSignal.timeout(12000)
               });
               if (response.ok) {
                 if (isHealthCheck && (await response.json())?.ok !== true) {
