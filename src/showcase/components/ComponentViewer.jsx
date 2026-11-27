@@ -21,12 +21,6 @@ export const ComponentViewer = ({ component, tab, onSelectTab, offline = false, 
     ? component.useCases
     : ['Use this primitive as a portable building block and adapt its data, routing, and visual tokens to your product.'];
 
-  const handleCopyCode = (code) => {
-    navigator.clipboard.writeText(code);
-    setCopiedNotification(true);
-    setTimeout(() => setCopiedNotification(false), 2000);
-  };
-
   const tabs = [
     { id: 'preview', label: 'Live Preview', icon: <Eye size={15} /> },
     { id: 'explanation', label: 'Overview & Use Cases', icon: <BookOpen size={15} /> },

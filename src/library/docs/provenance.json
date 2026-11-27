@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19",
+  "generatedAt": "2026-11-27",
   "policy": "Source applications remain unchanged. Imported components are normalized to React 19 and Tailwind conventions.",
   "entries": [
     { "id": "button", "sourceProject": "phekong-commerce-platform", "sourcePath": "src/components/ui/Button.tsx", "adaptation": "Removed project CSS and converted variants to library Tailwind tokens." },
@@ -27,7 +27,14 @@
     { "id": "repair-studio-card", "sourceProject": "sankofa-computelab", "sourcePath": "src/learning.jsx", "adaptation": "Converted repair studio drill into self-contained accordion with criteria tally and changed-facts correction field." },
     { "id": "workspace-action-strip", "sourceProject": "senatla-ops-internal-automation-solution", "sourcePath": "src/app/components/workspace-action-strip.component.ts", "adaptation": "Ported Angular next-safe-action banner to React 19 with accessible live-region status and tone styling." },
     { "id": "operational-metric-strip", "sourceProject": "senatla-ops-internal-automation-solution", "sourcePath": "src/app/components/timesheet-summary.component.ts", "adaptation": "Ported Angular timesheet metrics summary into responsive 6-cell operational status strip." },
-    { "id": "interactive-stat-card", "sourceProject": "senatla-ops-internal-automation-solution", "sourcePath": "src/app/components/erp/erp-stat-card.component.ts", "adaptation": "Ported Angular ERP stat card to React 19 with drilldown indicators, status badge, and keyboard activation." }
+    { "id": "interactive-stat-card", "sourceProject": "senatla-ops-internal-automation-solution", "sourcePath": "src/app/components/erp/erp-stat-card.component.ts", "adaptation": "Ported Angular ERP stat card to React 19 with drilldown indicators, status badge, and keyboard activation." },
+    { "id": "workflow-cards", "sourceProject": "sankofa-visual-template-library", "sourcePath": "origin/workflow-cards:src/components/workflow/WorkflowCards.tsx", "adaptation": "Normalized TypeScript Sankofa Water workflow cards into React 19 JSX with empty state, column presets, and optional step badges." },
+    { "id": "workflow-system-map", "sourceProject": "sankofa-digital-za", "sourcePath": "dist/index.html + dist/assets/css/system-map.css + dist/assets/js/main.js", "adaptation": "Converted interactive 3-stage orbital system map from static DOM script into accessible React 19 tablist/tabpanel component." },
+    { "id": "capability-disclosure", "sourceProject": "sankofa-computelab", "sourcePath": "src/CapabilityDisclosure.jsx + src/capabilities.js", "adaptation": "Normalized native details capability disclosure to Tailwind library tokens with optional route interception and empty state." },
+    { "id": "filter-toolbar", "sourceProject": "senatla-ops-internal-automation-solution", "sourcePath": "src/app/components/erp/erp-filter-toolbar.component.ts", "adaptation": "Ported Angular signal-based ERP filter toolbar to React 19 with controlled/uncontrolled search, category filter, and reset control." },
+    { "id": "grouped-tab-nav", "sourceProject": "senatla-ops-internal-automation-solution", "sourcePath": "src/app/components/ui-tab-nav.component.ts", "adaptation": "Ported Angular grouped workspace tab navigation to React 19 with aria-current page markers and keyboard arrow support." },
+    { "id": "progress-bar", "sourceProject": "sankofa-water-pwa", "sourcePath": "components/ui/progress-bar.tsx", "adaptation": "Normalized TypeScript linear progress bar to React 19 JSX with clamped aria-valuenow bounds, tone presets, and accessible label association." },
+    { "id": "sparkline", "sourceProject": "sankofa-water-pwa", "sourcePath": "components/ui/sparkline.tsx", "adaptation": "Normalized TypeScript SVG sparkline to React 19 JSX with responsive viewBox scaling, auto bounds, and non-finite value filtering." }
   ],
   "duplicates": [
     { "behavior": "Safety and commercial component variants", "projects": ["Umkhuseli_The_Protector", "Umk_Commercial", "Umk_Commercial_Lib-"], "decision": "Excluded from the UI set because the variants contain domain-specific safety, service, and app-state logic." }
@@ -35,6 +42,7 @@
   "platformSources": [
     { "repository": "sankofa-digital-za", "classification": "brand-and-editorial-baseline", "decision": "Extracted delivery pipeline, capability matrix, principles audit, and direct qualified contact patterns." },
     { "repository": "sankofa-computelab", "classification": "edtech-and-learning-baseline", "decision": "Extracted coverage progress gauge, weighted coursework planner, calibrated diagnostic, and repair studio patterns." },
-    { "repository": "senatla-ops-internal-automation-solution", "classification": "workflow-and-backend-baseline", "decision": "Extracted workspace action strip, high-density metric summary strip, and interactive ERP stat card patterns." }
+    { "repository": "senatla-ops-internal-automation-solution", "classification": "workflow-and-backend-baseline", "decision": "Extracted workspace action strip, high-density metric summary strip, interactive ERP stat card, filter toolbar, and grouped tab navigation patterns." },
+    { "repository": "sankofa-water-pwa", "classification": "telemetry-and-civic-baseline", "decision": "Extracted linear progress bar and SVG sparkline trend primitives." }
   ]
 }

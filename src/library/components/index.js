@@ -19,33 +19,40 @@ export { Button } from '../foundations/Button';
 export { Card } from '../foundations/Card';
 export { FeatureCard } from '../foundations/FeatureCard';
 export { CapabilityGrid } from '../foundations/CapabilityGrid';
+export { ProgressBar } from '../foundations/ProgressBar';
 export { ApplicationShell } from '../navigation/ApplicationShell';
 export { SiteFooter } from '../navigation/SiteFooter';
 export { PublicRouteSurface } from '../navigation/PublicRouteSurface';
 export { CommandPalette } from '../navigation/CommandPalette';
 export { DeliveryProcessFlow } from '../navigation/DeliveryProcessFlow';
+export { GroupedTabNav } from '../navigation/GroupedTabNav';
+export { WorkflowSystemMap } from '../navigation/WorkflowSystemMap';
 export { ActionFeedback } from '../feedback/ActionFeedback';
 export { DirectContactPanel } from '../forms/DirectContactPanel';
 export { CommerceRouteHero } from '../commerce/CommerceRouteHero';
+export { FilterToolbar } from '../commerce/FilterToolbar';
 export { ProductCatalogue } from '../commerce/ProductCatalogue';
 export { ProductDetail } from '../commerce/ProductDetail';
 export { ApprovedImage } from '../commerce/ApprovedImage';
+export { CapabilityDisclosure } from '../learning/CapabilityDisclosure';
 export { ExpandableSection } from '../learning/ExpandableSection';
 export { SingleOpenAccordion } from '../learning/SingleOpenAccordion';
 export { LearnerProgressRibbon } from '../learning/LearnerProgressRibbon';
 export { CoverageProgressCard } from '../learning/CoverageProgressCard';
 export { CourseworkMarksPlanner } from '../learning/CourseworkMarksPlanner';
-export { DiagnosticAssessmentCard } from '../learning/DiagnosticAssessmentCard';
-export { RepairStudioCard } from '../learning/RepairStudioCard';
+export { DiagnosticAssessmentCard, getDiagnosticActionLabel } from '../learning/DiagnosticAssessmentCard';
+export { RepairStudioCard, buildRepairSummary } from '../learning/RepairStudioCard';
 export {
   DataTableShell,
   StatusBadge,
   WorkflowStepper,
+  WorkflowCards,
   ExportMenu,
   InlineFeedback,
   WorkspaceActionStrip,
   OperationalMetricStrip,
   InteractiveStatCard,
+  Sparkline,
 } from '../operations';
 export {
   LegalPolicyPage,

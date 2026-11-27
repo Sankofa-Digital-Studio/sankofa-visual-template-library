@@ -75,6 +75,13 @@ export const LivePreviewContainer = ({ componentId }) => {
     'workspace-action-strip',
     'operational-metric-strip',
     'interactive-stat-card',
+    'workflow-cards',
+    'workflow-system-map',
+    'capability-disclosure',
+    'filter-toolbar',
+    'grouped-tab-nav',
+    'progress-bar',
+    'sparkline',
   ];
   if (importedPreviewIds.includes(componentId)) {
     return <ImportedComponentPreview componentId={componentId} />;

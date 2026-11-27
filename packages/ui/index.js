@@ -16,3 +16,10 @@ export { OfflineSaveButton } from '../../src/library/offline/OfflineSaveButton.j
 export { OfflineSyncStatus } from '../../src/library/operations/OfflineSyncStatus.jsx';
 export { createOfflineOutbox } from '../../src/library/offline/outbox.js';
 export { Drawer } from "../../src/library/foundations/Drawer.jsx";
+export { WorkflowCards } from '../../src/library/operations/WorkflowCards.jsx';
+export { WorkflowSystemMap } from '../../src/library/navigation/WorkflowSystemMap.jsx';
+export { CapabilityDisclosure } from '../../src/library/learning/CapabilityDisclosure.jsx';
+export { FilterToolbar } from '../../src/library/commerce/FilterToolbar.jsx';
+export { GroupedTabNav } from '../../src/library/navigation/GroupedTabNav.jsx';
+export { ProgressBar } from '../../src/library/foundations/ProgressBar.jsx';
+export { Sparkline } from '../../src/library/operations/Sparkline.jsx';

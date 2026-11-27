@@ -28,12 +28,21 @@ import {
   WorkspaceActionStrip,
   OperationalMetricStrip,
   InteractiveStatCard,
+  WorkflowCards,
+  WorkflowSystemMap,
+  CapabilityDisclosure,
+  FilterToolbar,
+  GroupedTabNav,
+  ProgressBar,
+  Sparkline,
 } from '../../library/components';
 
 const products = [{ id: 'one', name: 'Sunflower Creamed Honey', category: 'Commerce', price: 'R120', description: 'A reusable product detail example.', stock: 4 }];
 
 export default function ImportedComponentPreview({ componentId }) {
   const [openItemId, setOpenItemId] = useState('one');
+  const [activeNavTab, setActiveNavTab] = useState('overview');
+  const [filterState, setFilterState] = useState({ search: '', selectedFilter: '' });
   const [feedback, setFeedback] = useState({ tone: 'success', message: 'Preview state is ready.' });
   const [buttonLoading, setButtonLoading] = useState(false);
   const triggerLoading = () => {
@@ -158,6 +167,62 @@ export default function ImportedComponentPreview({ componentId }) {
           <InteractiveStatCard title="Active Fleet Assets" value="48 / 50" subtext="2 in maintenance" badge="96% Operational" tone="accent" onClick={() => setFeedback({ tone: 'info', message: 'Drilldown into Active Fleet Assets' })} />
           <InteractiveStatCard title="Daily Attendance" value="98.5%" subtext="1 unexcused absence" badge="Target Met" tone="success" onClick={() => setFeedback({ tone: 'info', message: 'Drilldown into Attendance' })} />
           <InteractiveStatCard title="Pending Approvals" value="3" subtext="Requires supervisor review" badge="Action Required" tone="warning" onClick={() => setFeedback({ tone: 'warning', message: 'Opening pending approvals queue' })} />
+        </div>
+      );
+    case 'workflow-cards':
+      return <WorkflowCards showStepNumbers />;
+    case 'workflow-system-map':
+      return <WorkflowSystemMap onAction={(stage) => setFeedback({ tone: 'info', message: `Selected ${stage.tabLabel} stage` })} />;
+    case 'capability-disclosure':
+      return <CapabilityDisclosure defaultOpen onNavigate={(item) => setFeedback({ tone: 'info', message: `Navigate to ${item.title}` })} />;
+    case 'filter-toolbar':
+      return (
+        <div className="space-y-3">
+          <FilterToolbar
+            search={filterState.search}
+            selectedFilter={filterState.selectedFilter}
+            filterOptions={[{ label: 'Ready', value: 'ready' }, { label: 'In progress', value: 'in-progress' }, { label: 'Blocked', value: 'blocked' }]}
+            onFilterChange={setFilterState}
+            resultCount={filterState.search || filterState.selectedFilter ? 1 : 4}
+          />
+          <ActionFeedback state={{ tone: 'info', message: `Filter: "${filterState.search || 'all'}" · Status: ${filterState.selectedFilter || 'all'}` }} />
+        </div>
+      );
+    case 'grouped-tab-nav':
+      return (
+        <div className="space-y-3">
+          <GroupedTabNav
+            activeId={activeNavTab}
+            onSelect={setActiveNavTab}
+            tabs={[
+              { id: 'overview', label: 'Overview', group: 'Workspace' },
+              { id: 'timesheets', label: 'Timesheets', group: 'Operations' },
+              { id: 'assets', label: 'Assets', group: 'Operations' },
+              { id: 'audit', label: 'Audit Log', group: 'Governance' },
+            ]}
+          />
+          <ActionFeedback state={{ tone: 'success', message: `Active section: ${activeNavTab}` }} />
+        </div>
+      );
+    case 'progress-bar':
+      return (
+        <div className="space-y-4">
+          <ProgressBar label="Sync completion" value={76} max={100} tone="primary" showPercent size="md" />
+          <ProgressBar label="Verification coverage" value={100} max={100} tone="success" showPercent size="sm" />
+          <ProgressBar label="Queue threshold" value={28} max={100} tone="warning" showPercent size="xs" />
+        </div>
+      );
+    case 'sparkline':
+      return (
+        <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <div className="space-y-1">
+            <span className="block text-xs font-semibold text-slate-400">Throughput (7d)</span>
+            <Sparkline values={[14, 18, 16, 23, 27, 25, 34]} label="Weekly throughput trend" />
+          </div>
+          <div className="space-y-1">
+            <span className="block text-xs font-semibold text-slate-400">Stability</span>
+            <Sparkline values={[92, 94, 91, 95, 97, 96, 99]} color="#34d399" label="System stability trend" />
+          </div>
         </div>
       );
 

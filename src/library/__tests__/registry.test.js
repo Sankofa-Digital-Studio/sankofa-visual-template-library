@@ -5,7 +5,7 @@ import { COMPONENT_REGISTRY } from '../docs/registry';
 describe('component registry', () => {
   it('uses unique identifiers and has mobile and offline guidance for every entry', () => {
     const ids = COMPONENT_REGISTRY.map((entry) => entry.id);
-    expect(ids).toHaveLength(52);
+    expect(ids).toHaveLength(59);
     expect(new Set(ids).size).toBe(ids.length);
     expect(Object.keys(componentChecks).sort()).toEqual([...ids].sort());
   });

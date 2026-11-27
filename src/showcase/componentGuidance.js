@@ -51,6 +51,13 @@ export const componentChecks = {
   'workspace-action-strip': 'Keep primary workflow actions accessible without horizontal overflow on small screens.',
   'operational-metric-strip': 'Wrap metric tiles gracefully across narrow viewports and preserve contrast across theme states.',
   'interactive-stat-card': 'Provide touch-friendly inspection targets and preserve data clarity when offline.',
+  'workflow-cards': 'Stack ordered workflow cards cleanly on mobile and ensure step actions meet touch-target minimums.',
+  'workflow-system-map': 'Stack the orbital map above stage controls on narrow screens and preserve keyboard tablist navigation.',
+  'capability-disclosure': 'Keep scope boundaries readable inside the native disclosure and ensure linked headings wrap cleanly.',
+  'filter-toolbar': 'Allow search and filter controls to wrap at narrow widths and keep the reset trigger reachable.',
+  'grouped-tab-nav': 'Permit horizontal scrolling for grouped sections and maintain visible focus and current-page indicators.',
+  'progress-bar': 'Keep label and percentage readable at narrow widths and expose clamped progressbar ARIA attributes.',
+  sparkline: 'Provide a descriptive aria-label and scale smoothly inside compact metric cards without overflowing.',
 };
 
 const networkPreviews = new Set([

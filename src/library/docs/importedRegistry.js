@@ -159,6 +159,55 @@ function exampleUsage(entry) {
   tone="accent"
   onClick={() => console.log('clicked')}
 />`,
+    WorkflowCards: `<WorkflowCards
+  columns={3}
+  showStepNumbers
+  steps={[
+    { title: 'Capture Record', description: 'Log field readings offline.', action: <button type="button">Open</button> },
+    { title: 'Verify', description: 'Check anomalies before sign-off.', action: <button type="button">Review</button> },
+    { title: 'Publish', description: 'Share approved summary.', action: <button type="button">Export</button> },
+  ]}
+/>`,
+    WorkflowSystemMap: `<WorkflowSystemMap
+  kicker="Workflow map"
+  actionLabel="See the delivery process"
+  onAction={(stage) => console.log('stage', stage.id)}
+/>`,
+    CapabilityDisclosure: `<CapabilityDisclosure
+  label="What this workspace supports"
+  items={[
+    { route: 'learning', title: 'Course coverage', detail: 'Practise selected core skills locally.' },
+    { route: 'progress', title: 'Local storage', detail: 'Progress saves in this browser profile.' },
+  ]}
+/>`,
+    FilterToolbar: `<FilterToolbar
+  placeholder="Search records..."
+  filterOptions={[
+    { label: 'Active', value: 'active' },
+    { label: 'Pending', value: 'pending' },
+  ]}
+  onFilterChange={(state) => console.log(state)}
+/>`,
+    GroupedTabNav: `<GroupedTabNav
+  tabs={[
+    { id: 'overview', label: 'Overview', group: 'Workspace' },
+    { id: 'timesheets', label: 'Timesheets', group: 'Operations' },
+    { id: 'assets', label: 'Assets', group: 'Operations' },
+  ]}
+  activeId="overview"
+  onSelect={(id) => console.log('selected', id)}
+/>`,
+    ProgressBar: `<ProgressBar
+  label="Quota completion"
+  value={72}
+  max={100}
+  tone="primary"
+  showPercent
+/>`,
+    Sparkline: `<Sparkline
+  values={[18, 24, 22, 31, 29, 38, 42]}
+  label="Weekly throughput trend"
+/>`,
   };
   if (examples[component]) return examples[component];
   const required = (entry.props || []).filter((prop) => prop.required).map((prop) => `${prop.name}="Example value"`).join(' ');
@@ -394,5 +443,126 @@ export const IMPORTED_COMPONENT_DESCRIPTORS = [
     ],
     customization: ['Tone color styling', 'Drilldown link hint', 'Keyboard Enter/Space trigger'],
     explanation: 'Adapted from Senatla Ops ERP stat card for high-density dashboard monitoring and drilldowns.',
+  }),
+  make({
+    id: 'workflow-cards',
+    name: 'Workflow Cards',
+    exportName: 'WorkflowCards',
+    category: 'Operations & Feedback',
+    sourceProject: 'sankofa-visual-template-library',
+    sourcePath: 'origin/workflow-cards:src/components/workflow/WorkflowCards.tsx',
+    tagline: 'Ordered card grid presenting sequential workflow steps with icons, descriptions, and action slots.',
+    props: [
+      { name: 'steps', type: 'WorkflowStep[]', default: 'DEFAULT_STEPS', required: true },
+      { name: 'columns', type: '2 | 3 | 4', default: '3', required: false },
+      { name: 'showStepNumbers', type: 'boolean', default: 'false', required: false },
+    ],
+    customization: ['Column layout', 'Step number badges', 'Custom per-step action controls'],
+    explanation: 'Adapted from the Sankofa Water workflow cards branch to present clear multi-step user journeys.',
+  }),
+  make({
+    id: 'workflow-system-map',
+    name: 'Workflow System Map',
+    exportName: 'WorkflowSystemMap',
+    category: 'Navigation & Shell',
+    sourceProject: 'sankofa-digital-za',
+    sourcePath: 'dist/index.html + dist/assets/css/system-map.css + dist/assets/js/main.js',
+    tagline: 'Interactive multi-stage orbital system map with keyboard-accessible tablist controls and stage narrative.',
+    props: [
+      { name: 'stages', type: 'SystemStage[]', default: 'DEFAULT_STAGES', required: false },
+      { name: 'nodes', type: 'SystemNode[]', default: 'DEFAULT_NODES', required: false },
+      { name: 'satellites', type: 'Satellite[]', default: 'DEFAULT_SATELLITES', required: false },
+      { name: 'onAction', type: 'Function(stage)', default: 'undefined', required: false },
+    ],
+    customization: ['Stage narrative and core labels', 'Highlighted nodes per stage', 'Call-to-action link or callback'],
+    explanation: 'Adapted from Sankofa Digital ZA homepage visual reset to make system relationships and delivery stages interactive.',
+  }),
+  make({
+    id: 'capability-disclosure',
+    name: 'Capability Disclosure',
+    exportName: 'CapabilityDisclosure',
+    category: 'Learning & Interaction',
+    sourceProject: 'sankofa-computelab',
+    sourcePath: 'src/CapabilityDisclosure.jsx + src/capabilities.js',
+    tagline: 'Native disclosure panel communicating scoped product capabilities, storage limits, and route links.',
+    props: [
+      { name: 'label', type: 'string', default: "'What this workspace supports'", required: false },
+      { name: 'items', type: 'CapabilityItem[]', default: 'DEFAULT_CAPABILITIES', required: true },
+      { name: 'defaultOpen', type: 'boolean', default: 'false', required: false },
+      { name: 'onNavigate', type: 'Function(item)', default: 'undefined', required: false },
+    ],
+    customization: ['Disclosure summary label', 'Scoped capability entries', 'Optional route click interception'],
+    explanation: 'Adapted from Sankofa ComputeLab learner claim audit to keep capability boundaries honest and inspectable.',
+  }),
+  make({
+    id: 'filter-toolbar',
+    name: 'Filter Toolbar',
+    exportName: 'FilterToolbar',
+    category: 'Operations & Feedback',
+    sourceProject: 'senatla-ops-internal-automation-solution',
+    sourcePath: 'src/app/components/erp/erp-filter-toolbar.component.ts',
+    tagline: 'Responsive search and category filter toolbar with active-filter clear button and trailing action slot.',
+    props: [
+      { name: 'placeholder', type: 'string', default: "'Search records…'", required: false },
+      { name: 'filterOptions', type: 'FilterOption[]', default: '[]', required: false },
+      { name: 'onFilterChange', type: 'Function(state)', default: 'undefined', required: false },
+      { name: 'resultCount', type: 'number', default: 'undefined', required: false },
+    ],
+    customization: ['Controlled or uncontrolled search/filter state', 'Custom status/category options', 'Trailing action slot'],
+    explanation: 'Adapted from Senatla Ops ERP filter toolbar for consistent list and table filtering across workspaces.',
+  }),
+  make({
+    id: 'grouped-tab-nav',
+    name: 'Grouped Tab Nav',
+    exportName: 'GroupedTabNav',
+    category: 'Navigation & Shell',
+    sourceProject: 'senatla-ops-internal-automation-solution',
+    sourcePath: 'src/app/components/ui-tab-nav.component.ts',
+    tagline: 'Grouped horizontal section navigation bar with current-page semantics, disabled tabs, and arrow-key traversal.',
+    props: [
+      { name: 'tabs', type: 'TabItem[]', default: '[]', required: true },
+      { name: 'activeId', type: 'string', default: "''", required: false },
+      { name: 'onSelect', type: 'Function(id)', default: 'undefined', required: false },
+    ],
+    customization: ['Section grouping headers', 'Disabled states', 'Keyboard Left/Right/Home/End navigation'],
+    explanation: 'Adapted from Senatla Ops workspace navigation to organize multi-section dashboards cleanly on mobile and desktop.',
+  }),
+  make({
+    id: 'progress-bar',
+    name: 'Progress Bar',
+    exportName: 'ProgressBar',
+    category: 'Foundations',
+    sourceProject: 'sankofa-water-pwa',
+    sourcePath: 'components/ui/progress-bar.tsx',
+    tagline: 'Accessible horizontal progress bar with clamped value bounds, size variants, and tone presets.',
+    props: [
+      { name: 'label', type: 'string', default: 'undefined', required: false },
+      { name: 'value', type: 'number', default: '0', required: true },
+      { name: 'max', type: 'number', default: '100', required: false },
+      { name: 'tone', type: "'primary'|'secondary'|'success'|'danger'|'warning'", default: "'primary'", required: false },
+      { name: 'showPercent', type: 'boolean', default: 'false', required: false },
+      { name: 'size', type: "'xs'|'sm'|'md'", default: "'sm'", required: false },
+    ],
+    customization: ['Semantic tone colors', 'Track height sizes', 'Optional label and percentage readout'],
+    explanation: 'Adapted from Sankofa Water PWA telemetry bars for consistent, accessible progress reporting across compact and desktop cards.',
+  }),
+  make({
+    id: 'sparkline',
+    name: 'Sparkline',
+    exportName: 'Sparkline',
+    category: 'Operations & Feedback',
+    sourceProject: 'sankofa-water-pwa',
+    sourcePath: 'components/ui/sparkline.tsx',
+    tagline: 'Compact SVG trend sparkline with automatic bounds, safe numeric filtering, and optional end marker.',
+    props: [
+      { name: 'values', type: 'number[]', default: '[]', required: true },
+      { name: 'minVal', type: 'number', default: 'auto', required: false },
+      { name: 'maxVal', type: 'number', default: 'auto', required: false },
+      { name: 'color', type: 'string', default: "'#fbbf24'", required: false },
+      { name: 'colorFn', type: 'Function(lastValue)', default: 'undefined', required: false },
+      { name: 'label', type: 'string', default: "'Trend sparkline'", required: false },
+    ],
+    customization: ['Dynamic stroke color function', 'Custom min/max scaling', 'Endpoint indicator dot'],
+    explanation: 'Adapted from Sankofa Water PWA telemetry sparklines to surface compact trend trajectories inside KPI cards and tables.',
   }),
 ];
