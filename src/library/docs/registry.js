@@ -11,6 +11,7 @@ const RAW_COMPONENT_REGISTRY = [
   ...[
     {
       id: 'application-shell', name: 'Application Shell', category: 'Navigation & Shell',
+      exportName: 'ApplicationShell',
       sourcePath: 'src/library/navigation/ApplicationShell.jsx',
       tagline: 'Compose a branded shell with real destinations and a focusable content landmark.',
       props: [{ name: 'links', type: 'Array<{ href, label }>', description: 'Primary destinations.' }],
@@ -19,6 +20,7 @@ const RAW_COMPONENT_REGISTRY = [
     },
     {
       id: 'drawer', name: 'Drawer', category: 'Overlays & Modals',
+      exportName: 'Drawer',
       sourcePath: 'src/library/foundations/Drawer.jsx',
       tagline: 'A full-width mobile overlay with a scrollable body and reachable footer.',
       props: [
@@ -31,6 +33,7 @@ const RAW_COMPONENT_REGISTRY = [
     },
     {
       id: 'responsive-navigation', name: 'Responsive Navigation', category: 'Navigation & Shell',
+      exportName: 'ResponsiveNavigation',
       sourcePath: 'src/library/navigation/ResponsiveNavigation.jsx',
       tagline: 'One set of destinations for a mobile bottom bar and desktop rail.',
       props: [
@@ -42,6 +45,7 @@ const RAW_COMPONENT_REGISTRY = [
     },
     {
       id: 'offline-save-button', name: 'Offline Save Button', category: 'Operations & Feedback',
+      exportName: 'OfflineSaveButton',
       sourcePath: 'src/library/offline/OfflineSaveButton.jsx',
       tagline: 'Save or remove an explicit offline copy with pending feedback.',
       props: [
@@ -54,6 +58,7 @@ const RAW_COMPONENT_REGISTRY = [
     },
     {
       id: 'offline-sync-status', name: 'Offline Sync Status', category: 'Operations & Feedback',
+      exportName: 'OfflineSyncStatus',
       sourcePath: 'src/library/operations/OfflineSyncStatus.jsx',
       tagline: 'Distinguish local saves, queued work, and acknowledged operations.',
       props: [
@@ -74,11 +79,12 @@ const RAW_COMPONENT_REGISTRY = [
 
   {
     id: 'legal-policy-kit',
+    publicExports: ['LegalPolicyPage', 'LegalFooterLinks', 'PolicyDocumentIndex', 'ComplianceDisclaimer', 'PolicyCustomizer'],
     name: 'South African Legal Policy Kit',
     category: 'Compliance & Legal',
     tagline: 'Typed, customizable policy pages and footer links for South African websites.',
     explanation: 'A reusable policy system for POPIA/PAIA, ECTA, CPA, cookies, accessibility, disclaimers, and complaints. It supports typed project presets, declarative footer links, conditional commerce sections, and deterministic HTML, Markdown, and DOCX policy exports. The generated wording is a customizable draft and requires qualified legal review before publication.',
-    usage: 'Import `LegalPolicyPage`, `LegalFooterLinks`, and `PolicyCustomizer` from `src/library/legal`. Pass a validated project configuration and set `policyId` when rendering one policy route.',
+    usage: 'Import `LegalPolicyPage`, `LegalFooterLinks`, and `PolicyCustomizer` from `@sankofa/ui`. Pass a validated project configuration and set `policyId` when rendering one policy route.',
     useCases: ['Public informational websites and marketing sites.', 'South African e-commerce storefronts with conditional consumer terms.', 'SaaS and digital-service websites.', 'Internal, education, and student-facing applications requiring configurable policy navigation.'],
     otherOptions: ['Choose `projectType="informational" | "ecommerce" | "saas" | "internal" | "education"`.', 'Override footer labels, order, visibility, routes, and external links through `footerLinks`.', 'Generate the combined handbook from the shared configuration in `examples/legal-policy-pack`.'],
     props: [
@@ -113,6 +119,7 @@ export default function LegalRoute() {
   },
   {
     id: 'breadcrumbs',
+    exportName: 'Breadcrumbs',
     name: 'Breadcrumbs Navigation',
     category: 'Navigation',
     tagline: 'Accessible hierarchical breadcrumb trail with multiple separators and mobile truncation.',
@@ -170,6 +177,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'container',
+    exportName: 'Container',
     name: 'Fluid Layout Container',
     category: 'Layout',
     tagline: 'Polymorphic wrapper providing responsive horizontal boundaries and fluid gutters.',
@@ -216,6 +224,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'section',
+    exportName: 'Section',
     name: 'Semantic Section',
     category: 'Layout',
     tagline: 'Vertical rhythm manager with surface theme presets, dividers, and container nesting.',
@@ -268,6 +277,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'product-card',
+    exportName: 'ProductCard',
     name: 'E-Commerce Product Card',
     category: 'Commerce',
     tagline: 'High-conversion product card with image zoom, ratings, badge ribbons, and stock indicators.',
@@ -332,6 +342,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'modal',
+    exportName: 'Modal',
     name: 'Accessible Dialog Modal',
     category: 'Overlays & Modals',
     tagline: 'Accessible dialog overlay with backdrop blur, focus management, and keyboard dismissal.',
@@ -407,6 +418,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'image-modal',
+    exportName: 'ImageModal',
     name: 'Image Lightbox Modal',
     category: 'Overlays & Modals',
     tagline: 'High-resolution image lightbox viewer with zoom controls and caption pill.',
@@ -468,6 +480,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'video-modal',
+    exportName: 'VideoModal',
     name: 'Video Player Modal',
     category: 'Overlays & Modals',
     tagline: 'Aspect-ratio locked video modal supporting YouTube, Vimeo, and direct MP4/WebM.',
@@ -528,6 +541,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'toast',
+    exportName: 'Toast',
     name: 'Notification Toast',
     category: 'Overlays & Modals',
     tagline: 'Floating feedback notification with countdown timer, 4 status variants, and action buttons.',
@@ -590,6 +604,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'impact-tracker',
+    exportName: 'ImpactTracker',
     name: 'Impact & KPI Tracker',
     category: 'Data & Proof',
     tagline: 'Metric stats showcase with animated icons, growth trends, and responsive columns.',
@@ -640,6 +655,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'founder-story',
+    exportName: 'FounderStory',
     name: 'Editorial Founder Story',
     category: 'Editorial & Content',
     tagline: 'Luxury editorial narrative block with founder portrait, anchor quote, and credentials.',
@@ -695,6 +711,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'featured-recipes',
+    exportName: 'FeaturedRecipes',
     name: 'Featured Recipes Grid',
     category: 'Editorial & Content',
     tagline: 'Culinary showcase cards with prep times, difficulty badges, and view triggers.',
@@ -743,6 +760,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'featured-reviews',
+    exportName: 'FeaturedReviews',
     name: 'Featured Reviews Carousel/Grid',
     category: 'Data & Proof',
     tagline: 'Social proof card showcase with star scores, verified customer badges, and location metadata.',
@@ -790,6 +808,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'featured-gifts',
+    exportName: 'FeaturedGifts',
     name: 'Featured Gifts & Hamper Showcase',
     category: 'Commerce',
     tagline: 'Curated gift bundle cards with packaging breakdown and custom message triggers.',
@@ -837,6 +856,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'education-hub',
+    exportName: 'EducationHubSection',
     name: 'Education Hub Section',
     category: 'Editorial & Content',
     tagline: 'Scientific and regulatory knowledge cards with read times and difficulty pills.',
@@ -884,6 +904,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'recipes-page',
+    internalReason: 'Internal template with embedded storefront recipe data.',
     name: 'Recipes & Lifestyle Full Page',
     category: 'Pages',
     tagline: 'Complete standalone lifestyle catalog page with category filtering and real-time search.',
@@ -926,6 +947,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'reviews-page',
+    internalReason: 'Internal template with embedded storefront ratings and reviews.',
     name: 'Customer Reviews Full Page',
     category: 'Pages',
     tagline: 'Comprehensive social proof page with rating histogram breakdown and submission CTA.',
@@ -968,6 +990,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
   {
     id: 'use-scroll-lock',
+    exportName: 'useScrollLock',
     name: 'useScrollLock Custom Hook',
     category: 'Hooks',
     tagline: 'Layout-shift safe body scroll lock hook for modals, sheets, and mobile drawers.',
@@ -1020,6 +1043,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   },
 ];
 
+function normalizeExampleImports(code, internalReason) {
+  const entryPoint = internalReason ? './library' : '@sankofa/ui';
+  return code?.replace(/(from )['"]\.(?:\/library(?:\/legal)?|\/components\/\w+|\/hooks\/useScrollLock)['"]/g, "$1'" + entryPoint + "'");
+}
+
 export const COMPONENT_REGISTRY = RAW_COMPONENT_REGISTRY.map((entry) => ({
   sourceProject: 'sankofa-visual-template-library',
   sourcePath: 'src/library/docs/registry.js',
@@ -1033,4 +1061,18 @@ export const COMPONENT_REGISTRY = RAW_COMPONENT_REGISTRY.map((entry) => ({
   knownLimitations: 'Confirm project-specific content, data, and accessibility requirements before shipping.',
   testPath: `src/library/__tests__/${entry.id}.test.jsx`,
   ...entry,
+  publicExports: entry.publicExports ?? (entry.exportName ? [entry.exportName] : []),
+  exportCode: normalizeExampleImports(entry.exportCode, entry.internalReason),
+  mainJsxCode: normalizeExampleImports(entry.mainJsxCode, entry.internalReason),
 }));
+
+// Supported utilities without their own showcase entries.
+export const UI_EXPORT_NAMES = [...new Set([
+  ...COMPONENT_REGISTRY.flatMap(({ publicExports }) => publicExports),
+  'createOfflineOutbox',
+  'getDiagnosticActionLabel',
+  'buildRepairSummary',
+  'validateLegalConfig',
+  // Available in the library source before it had a standalone showcase entry.
+  'ProductCatalogue',
+])].sort();

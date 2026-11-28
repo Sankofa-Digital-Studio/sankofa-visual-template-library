@@ -228,6 +228,14 @@ export const ComponentViewer = ({ component, tab, onSelectTab, offline = false, 
 
       {activeTab === 'export' && (
         <div {...panelProps('export')} className="space-y-6">
+          {component.internalReason ? (
+            <p className="text-sm text-slate-300">{component.internalReason} Use this example in a library source checkout.</p>
+          ) : component.publicExports?.length > 0 && (
+            <p className="text-sm text-slate-300">
+              Import <code>@sankofa/ui/styles.css</code> once in your app entry and see the{' '}
+              <a className="text-amber-400 underline" href="/docs/installation.html">installation guide</a> for setup.
+            </p>
+          )}
           {/* Sub Tab Buttons */}
           <div className="flex flex-wrap items-center gap-2">
             <button
@@ -239,7 +247,7 @@ export const ComponentViewer = ({ component, tab, onSelectTab, offline = false, 
                   : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
-              Standalone Component Code
+              Component usage example
             </button>
             <button
               aria-pressed={codeType === 'main'}
@@ -250,7 +258,7 @@ export const ComponentViewer = ({ component, tab, onSelectTab, offline = false, 
                   : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
-              main.jsx Integration Boilerplate
+              React integration example
             </button>
           </div>
 

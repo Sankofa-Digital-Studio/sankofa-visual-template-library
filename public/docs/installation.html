@@ -1,16 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sankofa — installation</title><style>body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:0 auto;padding:2rem;color:#20180f;background:#fffaf2}h1,h2{color:#7a470d}code{background:#f0e3ce;padding:.15rem .3rem;border-radius:.25rem}</style></head><body><h1>Installation</h1>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sankofa — installation</title><style>body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:0 auto;padding:2rem;color:#20180f;background:#fffaf2}h1,h2{color:#7a470d}code{background:#f0e3ce;padding:.15rem .3rem;border-radius:.25rem}</style></head><body><h1>Install and use Sankofa UI</h1>
 
-<p>The current repository is the reference showcase. Published consumers can install the versioned packages:</p>
+<p>The repository README lists the supported named exports from <code>@sankofa/ui</code> and identifies internal templates. Sankofa UI is proprietary. Use requires authorization from Sankofa Digital Studio.</p>
 
-<p>```bash</p>
-<p>npm install @sankofa/ui @sankofa/contracts @sankofa/config</p>
-<p>```</p>
+<p>The branded recipe and review pages, showcase route surface, and policy-generation internals remain repository features. The package supports the policy UI and configuration validator, as well as the outbox, catalogue and learning helpers listed in its generated entry point. Source modules outside the registry and package entry carry no downstream compatibility guarantee.</p>
 
-<p>For a new application:</p>
+<h2>Workspace setup</h2>
 
-<p>```bash</p>
-<p>npx create-sankofa-app create my-project --dry-run</p>
-<p>```</p>
+<p>From the repository root, run <code>npm ci</code>. The workspace package builds during setup. Run <code>npm run ui:build</code> after changing component source to refresh the workspace package. Use <code>npm run ui:sync</code> after changing registry metadata.</p>
 
-<p>Generated applications pin package versions and include a lockfile, environment template, caller workflows, and a validation script.</p>
+<h2>Use a local tarball in another app</h2>
+
+<li>In the library checkout, run `npm pack --workspace @sankofa/ui`.</li>
+<li>In your React app, run `npm install /path/to/sankofa-ui-0.1.0.tgz` using the path printed by npm.</li>
+<li>Import named components from `@sankofa/ui` and import `@sankofa/ui/styles.css` once in your client entry.</li>
+<li>Use `examples/ui-consumer/App.jsx` as a working example with a metric strip, progress indicator, and a callback.</li>
+
+<h2>Framework and dependency support</h2>
+
+<p>The reference consumer uses React 19, React DOM 19, and Vite 7. The package retains the React 18+ peer range and declares React DOM 18+ as a peer. Keep React and React DOM on the same major version. The package is ESM and installs Lucide React as a runtime dependency.</p>
+
+<p>The bundled stylesheet includes Tailwind 3 utilities and the Sankofa tokens with Tailwind Preflight disabled. Your app can use it without Tailwind. The stylesheet includes global utility selectors, so review CSS import order if your app defines utilities with the same names.</p>
+
+<p>Other React bundlers need to support ESM and CSS imports. In a framework with React Server Components, import interactive UI from a client component and load the stylesheet where your framework permits global CSS. Angular, Vue, and Svelte consumers need a React mount or a native adaptation. Those integrations are outside the verified baseline.</p>
+
+<p>Offline components depend on host-managed persistence and browser IndexedDB for the outbox. The host app supplies routing, product data, authentication, and any service worker. React DOM portals and offline browser APIs need a browser when exercised.</p>
+
+<h2>Verify a change</h2>
+
+<p>Run <code>npm run ui:check</code>, <code>npm test</code>, and <code>npm run ui:verify</code> in the library checkout. The package check packs a local tarball, verifies all named imports from it and builds the example consumer.</p>
 </body></html>

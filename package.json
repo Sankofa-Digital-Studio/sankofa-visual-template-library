@@ -18,7 +18,11 @@
     "sankofa": "node scripts/sankofa-cli.mjs",
     "platform:validate": "node scripts/sankofa-cli.mjs validate --json",
     "platform:doctor": "node scripts/sankofa-cli.mjs doctor --json",
-    "test:browser": "node scripts/test-mobile-showcase.mjs"
+    "test:browser": "node scripts/test-mobile-showcase.mjs",
+    "ui:sync": "node scripts/sync-ui-api.mjs",
+    "ui:check": "node scripts/sync-ui-api.mjs --check",
+    "ui:build": "node scripts/build-ui.mjs",
+    "ui:verify": "node scripts/verify-ui-package.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.86.0",
