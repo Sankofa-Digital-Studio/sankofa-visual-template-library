@@ -9,39 +9,90 @@ The **Sankofa Visual Template Library** provides a growing registry of productio
 2. **Deep Architectural Explanations** (WAI-ARIA accessibility, layout shift mitigation, mobile bandwidth performance).
 3. **Real-World Use Cases** (E-commerce storefronts, SaaS dashboards, mobile PWAs, and editorial branding).
 4. **Customization Options & Props API** (prop names, types, default values, and description tables).
-5. **Zero-Friction Export Code** (full standalone component code + exact `main.jsx` / `App.jsx` integration snippet).
+5. **Integration examples** with component imports and React usage.
 
 ---
 
-## 📦 Component Inventory (17 Components)
+## Component inventory
 
-| Component | Category | Purpose |
-|---|---|---|
-| `Breadcrumbs` | Navigation | Accessible hierarchical trail with custom separators and mobile truncation |
-| `Container` | Layout | Polymorphic responsive wrapper with `sm` to `7xl` & `full` width constraints |
-| `Section` | Layout | Vertical rhythm manager with 5 surface presets and automatic containers |
-| `ProductCard` | Commerce | E-commerce card with image zoom, rating stars, badge ribbons, and stock state |
-| `Modal` | Overlays & Modals | Accessible dialog with backdrop blur, focus containment, and ESC dismissal |
-| `ImageModal` | Overlays & Modals | High-res image lightbox with zoom toggle, captions, and category pills |
-| `VideoModal` | Overlays & Modals | 16:9 aspect-locked player supporting YouTube, Vimeo, and raw HTML5 video |
-| `Toast` | Overlays & Modals | Auto-dismissing feedback banner with progress countdown bar and 4 variants |
-| `ImpactTracker` | Data & Proof | Metric KPI counters with animated trend pills and responsive grid columns |
-| `FounderStory` | Editorial & Content | Luxury editorial block with founder portrait, pull quote, and credentials |
-| `FeaturedRecipes` | Editorial & Content | Culinary cards with prep times, difficulty badges, and drawer callbacks |
-| `FeaturedReviews` | Data & Proof | Social proof testimonials with star ratings and verified buyer badges |
-| `FeaturedGifts` | Commerce | Curated gift hamper spotlight with inclusions list and gift CTA |
-| `EducationHubSection` | Editorial & Content | Scientific and regulatory knowledge cards with read times and difficulty pills |
-| `RecipesPage` | Pages | Full-page culinary/lifestyle catalog with search and category filter pills |
-| `ReviewsPage` | Pages | Full-page review portal with rating histogram breakdown and review submission |
-| `useScrollLock` | Hooks | Layout-shift safe body scroll lock hook preventing background scroll bounce |
+<!-- BEGIN GENERATED INVENTORY -->
+The registry has **59 entries**. **57** have supported imports from `@sankofa/ui`.
+
+| Registry entry | Category | Package API or internal status |
+| --- | --- | --- |
+| E-Commerce Product Card | Commerce | `ProductCard` |
+| Featured Gifts & Hamper Showcase | Commerce | `FeaturedGifts` |
+| Approved Image | Commerce & Content | `ApprovedImage` |
+| Commerce Route Hero | Commerce & Content | `CommerceRouteHero` |
+| Product Detail | Commerce & Content | `ProductDetail` |
+| Principles Matrix | Compliance & Legal | `PrinciplesMatrix` |
+| South African Legal Policy Kit | Compliance & Legal | `LegalPolicyPage`, `LegalFooterLinks`, `PolicyDocumentIndex`, `ComplianceDisclaimer`, `PolicyCustomizer` |
+| Featured Reviews Carousel/Grid | Data & Proof | `FeaturedReviews` |
+| Impact & KPI Tracker | Data & Proof | `ImpactTracker` |
+| Editorial Founder Story | Editorial & Content | `FounderStory` |
+| Education Hub Section | Editorial & Content | `EducationHubSection` |
+| Featured Recipes Grid | Editorial & Content | `FeaturedRecipes` |
+| Action Feedback | Feedback & Overlays | `ActionFeedback` |
+| Inline Feedback | Feedback & Overlays | `InlineFeedback` |
+| Toast Notification System | Feedback & Overlays | `Toast` |
+| Direct Contact Panel | Forms & Overlays | `DirectContactPanel` |
+| Button | Foundations | `Button` |
+| Capability Grid | Foundations | `CapabilityGrid` |
+| Card | Foundations | `Card` |
+| Feature Card | Foundations | `FeatureCard` |
+| Progress Bar | Foundations | `ProgressBar` |
+| useScrollLock Custom Hook | Hooks | `useScrollLock` |
+| Fluid Layout Container | Layout | `Container` |
+| Semantic Section | Layout | `Section` |
+| Capability Disclosure | Learning & Interaction | `CapabilityDisclosure` |
+| Coursework Marks Planner | Learning & Interaction | `CourseworkMarksPlanner` |
+| Coverage Progress Card | Learning & Interaction | `CoverageProgressCard` |
+| Diagnostic Assessment Card | Learning & Interaction | `DiagnosticAssessmentCard` |
+| Expandable Section | Learning & Interaction | `ExpandableSection` |
+| Learner Progress Ribbon | Learning & Interaction | `LearnerProgressRibbon` |
+| Repair Studio Card | Learning & Interaction | `RepairStudioCard` |
+| Single Open Accordion | Learning & Interaction | `SingleOpenAccordion` |
+| Breadcrumbs Navigation | Navigation | `Breadcrumbs` |
+| Application Shell | Navigation & Shell | `ApplicationShell` |
+| Command Palette | Navigation & Shell | `CommandPalette` |
+| Delivery Process Flow | Navigation & Shell | `DeliveryProcessFlow` |
+| Grouped Tab Nav | Navigation & Shell | `GroupedTabNav` |
+| Responsive Navigation | Navigation & Shell | `ResponsiveNavigation` |
+| Site Footer | Navigation & Shell | `SiteFooter` |
+| Workflow Stepper | Navigation & Shell | `WorkflowStepper` |
+| Workflow System Map | Navigation & Shell | `WorkflowSystemMap` |
+| Data Table Shell | Operations & Feedback | `DataTableShell` |
+| Export Menu | Operations & Feedback | `ExportMenu` |
+| Filter Toolbar | Operations & Feedback | `FilterToolbar` |
+| Interactive Stat Card | Operations & Feedback | `InteractiveStatCard` |
+| Offline Save Button | Operations & Feedback | `OfflineSaveButton` |
+| Offline Sync Status | Operations & Feedback | `OfflineSyncStatus` |
+| Operational Metric Strip | Operations & Feedback | `OperationalMetricStrip` |
+| Sparkline | Operations & Feedback | `Sparkline` |
+| Status Badge | Operations & Feedback | `StatusBadge` |
+| Workflow Cards | Operations & Feedback | `WorkflowCards` |
+| Workspace Action Strip | Operations & Feedback | `WorkspaceActionStrip` |
+| Accessible Dialog Modal | Overlays & Modals | `Modal` |
+| Drawer | Overlays & Modals | `Drawer` |
+| Image Lightbox Modal | Overlays & Modals | `ImageModal` |
+| Notification Toast | Overlays & Modals | `Toast` |
+| Video Player Modal | Overlays & Modals | `VideoModal` |
+| Customer Reviews Full Page | Pages | Internal template with embedded storefront ratings and reviews. |
+| Recipes & Lifestyle Full Page | Pages | Internal template with embedded storefront recipe data. |
+
+Additional package exports include `ProductCatalogue`, `buildRepairSummary`, `createOfflineOutbox`, `getDiagnosticActionLabel`, `validateLegalConfig`.
+
+<!-- END GENERATED INVENTORY -->
+
+The [integration guide](docs/public/installation.md) covers workspace and local tarball use. Run `npm run ui:sync` after editing registry metadata.
 
 ---
 
 ## 🛠️ Quick Start
 
 ```bash
-# Navigate to the template library
-cd c:\Users\thoso\Sankofa_mvp\sankofa-visual-template-library
+# Install dependencies from the repository root
+npm ci
 
 # Start the interactive development server
 npm run dev
@@ -52,13 +103,9 @@ npm run build
 
 ---
 
-## 📋 How to Export Components to Any Project
+## Reuse components
 
-1. Run the visual library with `npm run dev`.
-2. Browse to the component you wish to use.
-3. Switch to the **Export Code (Zero Friction)** tab.
-4. Click **Copy Component Code** to copy the component into your project's `src/components/` folder.
-5. Click **main.jsx Integration Boilerplate** to view the exact imports and wrapper setup.
+Use the package imports shown in the inventory and follow the [integration example](examples/ui-consumer/App.jsx). The showcase provides component usage and integration snippets. Internal templates are available through the repository source for authorized maintainers.
 
 ## Mobile and offline
 

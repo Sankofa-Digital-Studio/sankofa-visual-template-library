@@ -17,7 +17,7 @@ export default function MobileGuide() {
       </div>
       <div>
         <h4 className="font-semibold">Integrate in React</h4>
-        <p className="mt-1 text-sm leading-6 text-slate-300">Use ResponsiveNavigation in your shell with real route URLs. Pass activeHref so the selected destination exposes aria-current. Include the Sankofa styles and the library source in your Tailwind content paths. Give your main content a focus target and add clearance below fixed navigation. Use OfflineSaveButton for local saves and OfflineSyncStatus for an account-specific outbox.</p>
+        <p className="mt-1 text-sm leading-6 text-slate-300">Import ResponsiveNavigation, OfflineSaveButton and OfflineSyncStatus from <code>@sankofa/ui</code>. Load <code>@sankofa/ui/styles.css</code> once in the app entry. Use real route URLs and pass activeHref so the selected destination exposes aria-current. Give your main content a focus target and add clearance below fixed navigation. Use OfflineSaveButton for local saves and OfflineSyncStatus for an account-specific outbox.</p>
       </div>
       <div>
         <h4 className="font-semibold">Apply the pattern in Angular</h4>
